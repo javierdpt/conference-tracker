@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="fabric:/ConferenceTracker" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="ConferenceTracker.Web_ASPNETCORE_ENVIRONMENT" Value="Development" />
+    <Parameter Name="ConferenceTracker.Web_InstanceCount" Value="1" />
+    <Parameter Name="ConferenceTracker.Web_ASPNETCORE_ENVIRONMENT" Value="Development" />
+    <Parameter Name="ConferenceTracker.Web_InstanceCount" Value="1" />
+    <Parameter Name="ConferenceTracker.Web_InstanceCount" Value="1" />
+    <Parameter Name="ConferenceTracker.Data_PartitionCount" Value="1" />
+    <Parameter Name="ConferenceTracker.Data_MinReplicaSetSize" Value="3" />
+    <Parameter Name="ConferenceTracker.Data_TargetReplicaSetSize" Value="3" />
+    <Parameter Name="ConferenceTracker.Web_InstanceCount" Value="1" />
+    <Parameter Name="ConferenceTracker.Api_ASPNETCORE_ENVIRONMENT" Value="Development" />
+    <Parameter Name="ConferenceTracker.Api_InstanceCount" Value="1" />
+  </Parameters>
+</Application>
