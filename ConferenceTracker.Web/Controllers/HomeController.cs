@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ConferenceTracker.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ConferenceTracker.Web.Models;
+using System.Diagnostics;
 
 namespace ConferenceTracker.Web.Controllers
 {
@@ -19,11 +15,6 @@ namespace ConferenceTracker.Web.Controllers
         }
 
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }

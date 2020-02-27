@@ -55,7 +55,7 @@ namespace ConferenceTracker.Data.Services
         {
             using var tx = StateManager.CreateTransaction();
             var store = await GetCollection();
-            entity.Id = new Guid();
+            entity.Id = Guid.NewGuid();
 
             var res = await store.AddOrUpdateAsync(tx, entity.Id, entity, (k, o) => entity);
             await tx.CommitAsync();

@@ -16,7 +16,7 @@ namespace ConferenceTracker.Data.Infrastructure
 
             return new Attendee
             {
-                Id = new Guid(),
+                Id = Guid.NewGuid(),
                 FirstName = PersonNameGenerator.GenerateRandomFirstName(),
                 LastName = PersonNameGenerator.GenerateRandomLastName(),
                 Company = PersonNameGenerator.GenerateRandomLastName(),
@@ -29,7 +29,7 @@ namespace ConferenceTracker.Data.Infrastructure
         {
             return new Speaker
             {
-                Id = new Guid(),
+                Id = Guid.NewGuid(),
                 Bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu",
                 FirstName = PersonNameGenerator.GenerateRandomFirstName(),
                 LastName = PersonNameGenerator.GenerateRandomLastName()
