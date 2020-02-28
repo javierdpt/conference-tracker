@@ -45,7 +45,7 @@ namespace ConferenceTracker.Data.Infrastructure
             {
                 Title = SessionsTitles[random.Next(0, SessionsTitles.Length - 1)],
                 Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr",
-                Speakers = speakers,
+                Speakers = speakers.Shuffle().Take(random.Next(1, 4)).ToList(),
                 Time = new DateTime(2020, 2, 29, random.Next(9, 18), min[random.Next(0, min.Length - 1)], 0),
                 Duration = TimeSpan.FromMinutes(dur[random.Next(0, dur.Length - 1)]),
                 Attendees = Enumerable

@@ -10,11 +10,11 @@ namespace ConferenceTracker.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SpeakerController : ControllerBase
+    public class SpeakersController : ControllerBase
     {
         private readonly ISpeakerDataService _speakerDataService;
 
-        public SpeakerController(IProxyService proxyService)
+        public SpeakersController(IProxyService proxyService)
         {
             _speakerDataService = proxyService.SpeakerDataService();
         }
