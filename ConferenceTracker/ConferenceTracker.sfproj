@@ -35,6 +35,7 @@
     <ProjectReference Include="..\ConferenceTracker.Api\ConferenceTracker.Api.csproj">
       <!--<ServiceLaunchUrl>http://{MachineName}:{ServicePort}/api/Sessions</ServiceLaunchUrl>-->
     </ProjectReference>
+    <ProjectReference Include="..\ConferenceTracker.Communications\ConferenceTracker.Communications.csproj" />
     <ProjectReference Include="..\ConferenceTracker.Data\ConferenceTracker.Data.csproj" />
     <ProjectReference Include="..\ConferenceTracker.Web\ConferenceTracker.Web.csproj">
       <!--<ServiceLaunchUrl>http://{MachineName}:{ServicePort}/</ServiceLaunchUrl>-->
