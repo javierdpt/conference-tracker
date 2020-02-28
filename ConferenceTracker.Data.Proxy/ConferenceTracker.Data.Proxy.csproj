@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ConferenceTracker.Communications.Interfaces\ConferenceTracker.Communications.Interfaces.csproj" />
     <ProjectReference Include="..\ConferenceTracker.Data.Interfaces\ConferenceTracker.Data.Interfaces.csproj" />
   </ItemGroup>
 

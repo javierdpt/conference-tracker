@@ -21,7 +21,8 @@ namespace ConferenceTracker.Api
         {
             services.AddOptions();
 
-            services.Configure<ConferenceDataOptions>(Configuration.GetSection("Remoting:DataService"));
+            services.Configure<DataServiceOptions>(Configuration.GetSection("Remoting:DataService"));
+            services.Configure<CommunicationServiceOptions>(Configuration.GetSection("Remoting:CommunicationService"));
 
             services.AddCors(options => {
                 options.AddPolicy("AllowAll",

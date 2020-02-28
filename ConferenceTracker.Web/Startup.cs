@@ -21,7 +21,8 @@ namespace ConferenceTracker.Web
         {
             services.AddOptions();
 
-            services.Configure<ConferenceDataOptions>(Configuration.GetSection("Remoting:DataService"));
+            services.Configure<DataServiceOptions>(Configuration.GetSection("Remoting:DataService"));
+            services.Configure<CommunicationServiceOptions>(Configuration.GetSection("Remoting:CommunicationService"));
 
             services.AddControllersWithViews();
 

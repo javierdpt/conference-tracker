@@ -12,8 +12,6 @@ namespace ConferenceTracker.Data.Infrastructure
 
         public static Attendee GetRandomAttendee()
         {
-            var random = new Random();
-
             return new Attendee
             {
                 Id = Guid.NewGuid(),
@@ -21,7 +19,7 @@ namespace ConferenceTracker.Data.Infrastructure
                 LastName = PersonNameGenerator.GenerateRandomLastName(),
                 Company = PersonNameGenerator.GenerateRandomLastName(),
                 Email = null,
-                PhoneNumber = random.Next(1000000000, 2147483647).ToString()
+                PhoneNumber = "5555555555"
             };
         }
 

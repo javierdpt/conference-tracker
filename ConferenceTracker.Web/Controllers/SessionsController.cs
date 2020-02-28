@@ -1,25 +1,52 @@
-﻿using ConferenceTracker.Data.Interfaces;
+﻿using ConferenceTracker.Communications.Interfaces;
+using ConferenceTracker.Data.Interfaces;
 using ConferenceTracker.Data.Proxy.Services;
 using ConferenceTracker.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ConferenceTracker.Web.Controllers
 {
     public class SessionsController : Controller
     {
+        private readonly ILogger<SessionsController> _logger;
         private readonly ISessionDataService _sessionDataService;
+        private readonly ITwilioSmsService _twilioSmsService;
 
-        public SessionsController(IProxyService proxyService)
+        public SessionsController(ILogger<SessionsController> logger, IProxyService proxyService)
         {
+            _logger = logger;
             _sessionDataService = proxyService.SessionDataService();
+            _twilioSmsService = proxyService.TwilioSmsService();
         }
 
         // GET: Sessions
         public async Task<IActionResult> Index()
         {
             return View(await _sessionDataService.GetAll(0, -1));
+        }
+
+        // GET: Sessions/Notify/{id}
+        public async Task<IActionResult> Notify(Guid id)
+        {
+            var session = await _sessionDataService.Get(id);
+            try
+            {
+                await Task.WhenAll(
+                    session.Attendees
+                        .Where(a => a.PhoneNumber != "5555555555")
+                        .Select(a => _twilioSmsService.SendText(
+                            a.PhoneNumber, $"The session \"{session.Title}\" will start in {session.Time.Subtract(DateTime.Now):g} min"))
+                );
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, e.Message);
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Sessions/Details/5

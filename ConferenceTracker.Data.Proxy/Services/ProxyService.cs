@@ -1,8 +1,8 @@
-﻿using ConferenceTracker.Data.Interfaces;
+﻿using ConferenceTracker.Communications.Interfaces;
+using ConferenceTracker.Data.Interfaces;
 using ConferenceTracker.Data.Proxy.Options;
 using Microsoft.Extensions.Options;
 using Microsoft.ServiceFabric.Services.Client;
-using Microsoft.ServiceFabric.Services.Communication.Client;
 using Microsoft.ServiceFabric.Services.Remoting.Client;
 using System;
 
@@ -10,25 +10,32 @@ namespace ConferenceTracker.Data.Proxy.Services
 {
     public class ProxyService : IProxyService
     {
-        private readonly ConferenceDataOptions _options;
+        private readonly DataServiceOptions _dataServiceOptions;
+        private readonly CommunicationServiceOptions _communicationServiceOptions;
 
-        public ProxyService(IOptions<ConferenceDataOptions> options)
+        public ProxyService(
+            IOptions<DataServiceOptions> dataServiceOptions,
+            IOptions<CommunicationServiceOptions> communicationServiceOptions)
         {
-            _options = options.Value;
+            _dataServiceOptions = dataServiceOptions.Value;
+            _communicationServiceOptions = communicationServiceOptions.Value;
         }
 
         public ISessionDataService SessionDataService() => ServiceProxy.Create<ISessionDataService>(
-            new Uri(_options.Uri),
-            new ServicePartitionKey(_options.PartitionKey),
-            TargetReplicaSelector.Default,
-            _options.SessionsEndpoint
+            new Uri(_dataServiceOptions.Uri),
+            new ServicePartitionKey(_dataServiceOptions.PartitionKey),
+            listenerName: _dataServiceOptions.SessionsEndpoint
         );
 
         public ISpeakerDataService SpeakerDataService() => ServiceProxy.Create<ISpeakerDataService>(
-            new Uri(_options.Uri),
-            new ServicePartitionKey(_options.PartitionKey),
-            TargetReplicaSelector.Default,
-            _options.SpeakersEndpoint
+            new Uri(_dataServiceOptions.Uri),
+            new ServicePartitionKey(_dataServiceOptions.PartitionKey),
+            listenerName: _dataServiceOptions.SpeakersEndpoint
+        );
+
+        public ITwilioSmsService TwilioSmsService() => ServiceProxy.Create<ITwilioSmsService>(
+            new Uri(_communicationServiceOptions.Uri),
+            listenerName: _communicationServiceOptions.Endpoint
         );
     }
 }
