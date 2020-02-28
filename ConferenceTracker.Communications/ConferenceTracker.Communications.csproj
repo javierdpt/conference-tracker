@@ -10,6 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.PerfCounterCollector" Version="2.13.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.DependencyCollector" Version="2.13.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.ServiceFabric.Native" Version="2.3.1" />
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="4.0.466" />
     <PackageReference Include="Microsoft.ServiceFabric.Services.Remoting" Version="4.0.466" />
     <PackageReference Include="Twilio" Version="5.37.5" />

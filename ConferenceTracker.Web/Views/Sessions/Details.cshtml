@@ -50,14 +50,15 @@
             @Html.DisplayNameFor(model => model.Speakers)
         </dt>
         <dd class="col-sm-10">
-            <div class="list-group">
-                @foreach (var speaker in Model.Speakers)
+            <p class="card-text">
+                @for (var i = 0; i < Model.Speakers.Count; i++)
                 {
-                    <a asp-controller="Speakers" asp-action="Details" asp-route-id="@speaker.Id" class="list-group-item list-group-item-action">
-                        @speaker.FirstName @speaker.LastName
-                    </a>
+                    var speaker = Model.Speakers[i];
+                    <a asp-controller="Speakers" asp-action="Details" asp-route-id="@speaker.Id" class="btn btn-link btn-sm">@speaker.FirstName @speaker.LastName</a>
+                    if (i != Model.Speakers.Count - 1)
+                    { <span>|</span>}
                 }
-            </div>
+            </p>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Attendees)
@@ -67,13 +68,13 @@
                 <thead>
                     <tr>
                         <th>
-                            Company)
+                            Company
                         </th>
                         <th>
-                            FirstName)
+                            FirstName
                         </th>
                         <th>
-                            LastName)
+                            LastName
                         </th>
                     </tr>
                 </thead>

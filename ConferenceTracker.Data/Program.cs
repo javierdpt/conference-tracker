@@ -1,8 +1,13 @@
+using Microsoft.ApplicationInsights.DependencyCollector;
+using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.QuickPulse;
+using Microsoft.ApplicationInsights.ServiceFabric;
+using Microsoft.ApplicationInsights.ServiceFabric.Module;
+using Microsoft.ServiceFabric.Services.Runtime;
 using System;
 using System.Diagnostics;
+using System.Fabric;
 using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.ServiceFabric.Services.Runtime;
 
 namespace ConferenceTracker.Data
 {
@@ -21,7 +26,11 @@ namespace ConferenceTracker.Data
                 // an instance of the class is created in this host process.
 
                 ServiceRuntime.RegisterServiceAsync("ConferenceTracker.DataType",
-                    context => new Data(context)).GetAwaiter().GetResult();
+                    context =>
+                    {
+                        InitTelemetry(context);
+                        return new Data(context);
+                    }).GetAwaiter().GetResult();
 
                 ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(Data).Name);
 
@@ -33,6 +42,21 @@ namespace ConferenceTracker.Data
                 ServiceEventSource.Current.ServiceHostInitializationFailed(e.ToString());
                 throw;
             }
+        }
+
+        private static void InitTelemetry(ServiceContext context)
+        {
+            var config = TelemetryConfiguration.CreateDefault();
+            config.TelemetryInitializers.Add(
+                FabricTelemetryInitializerExtension.CreateFabricTelemetryInitializer(context)
+            );
+            config.InstrumentationKey = "ad0fbd1f-f4d0-4480-bd92-3522b29144e9";
+            config.TelemetryInitializers.Add(new OperationCorrelationTelemetryInitializer());
+            config.TelemetryInitializers.Add(new HttpDependenciesParsingTelemetryInitializer());
+            new DependencyTrackingTelemetryModule().Initialize(config);
+            new ServiceRemotingRequestTrackingTelemetryModule().Initialize(config);
+            new ServiceRemotingDependencyTrackingTelemetryModule().Initialize(config);
+            new QuickPulseTelemetryModule().Initialize(config);
         }
     }
 }

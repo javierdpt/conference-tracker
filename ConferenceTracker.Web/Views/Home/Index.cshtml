@@ -38,7 +38,7 @@ else
                         }
                     </p>
 
-                    <a asp-controller="Sessions" asp-action="Details" asp-route-id="@session.Id" class="btn btn-secondary">More Details</a>
+                    <a asp-controller="Sessions" asp-action="Details" asp-route-id="@session.Id" class="btn btn-outline-primary">More Details</a>
                 </div>
             }
 
@@ -48,7 +48,7 @@ else
 
     <div id="extra-sections"></div>
 
-    <button type="button" class="btn btn-secondary btn-lg mb-4" id="load-more" data-page="1" style="min-width: 130px">Load More</button>
+    <button type="button" class="btn btn-outline-primary btn-lg mb-4" id="load-more" data-page="1" style="min-width: 130px">Load More</button>
 }
 
 @section Scripts
@@ -101,7 +101,7 @@ else
                                 }
                                     html += '</p>';
 
-                                    html += '<a href="/Sessions/Details/' + session.id + '" class="btn btn-secondary">More Details</a>';
+                                    html += '<a href="/Sessions/Details/' + session.id + '" class="btn btn-outline-primary">More Details</a>';
 
                                 html += '</div>';
 

@@ -26,6 +26,8 @@ namespace ConferenceTracker.Web
             services.AddControllersWithViews();
 
             services.AddSingleton<IProxyService, ProxyService>();
+
+            services.AddApplicationInsightsTelemetry(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
