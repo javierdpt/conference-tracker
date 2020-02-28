@@ -1,6 +1,7 @@
 ﻿using ConferenceTracker.Data.Interfaces;
 using ConferenceTracker.Data.Proxy.Services;
 using ConferenceTracker.Model;
+using ConferenceTracker.Model.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,17 @@ namespace ConferenceTracker.Api.Controllers
 
         // GET: api/Sessions
         [HttpGet]
-        public Task<List<Session>> Get([FromQuery] int skip = 0, int take = 500)
+        public Task<List<Session>> Get([FromQuery] int skip = 0, [FromQuery] int take = 500)
         {
             return _sessionDataService.GetAll(skip, take);
+        }
+
+        // GET: api/Sessions/Groups?skip=1&take=2
+        [HttpGet("[action]")]
+        public Task<List<SessionGroupDto>> Groups(
+            [FromQuery] int skip = 0, [FromQuery] int take = 500)
+        {
+            return _sessionDataService.GetGrouped(skip, take);
         }
 
         // GET: api/Sessions/5

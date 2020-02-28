@@ -23,6 +23,15 @@ namespace ConferenceTracker.Api
 
             services.Configure<ConferenceDataOptions>(Configuration.GetSection("Remoting:DataService"));
 
+            services.AddCors(options => {
+                options.AddPolicy("AllowAll",
+                    builder => {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
+
             services.AddControllers();
 
             services.AddSingleton<IProxyService, ProxyService>();
@@ -38,6 +47,8 @@ namespace ConferenceTracker.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors("AllowAll");
 
             app.UseEndpoints(endpoints =>
             {

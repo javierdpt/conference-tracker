@@ -1,35 +1,120 @@
-﻿@model IEnumerable<IGrouping<DateTime, ConferenceTracker.Model.Session>>
+﻿@model IEnumerable<ConferenceTracker.Model.Dtos.SessionGroupDto>
 @{
     ViewData["Title"] = "Sessions";
 }
 
 <h1 class="display-4 mt-5 mb-4">Sessions</h1>
 
-@foreach (var grp in Model)
+@if (!Model.Any())
 {
-    <div class="card mb-4">
-        <div class="card-header">
-            @grp.Key.ToString("dddd, MMMM dd, yyyy") <strong>@grp.Key.ToString("hh tt")</strong>
-        </div>
-
-        @foreach (var session in grp.OrderBy(g => g.Time))
-        {
-            <div class="card-body">
-                <h5 class="card-title">@session.Title <br /><small>@session.Time.ToString("MMM dd, hh:mm tt") - @session.Time.Add(session.Duration).ToString("hh:mm tt")</small></h5>
-                <p class="card-text">@session.Description</p>
-
-                <h6>Speakers</h6>
-                <p class="card-text">
-                    @for (var i = 0; i < session.Speakers.Count; i++)
-                    {
-                        var speaker = session.Speakers[i];
-                        <a asp-controller="Speakers" asp-action="Details" asp-route-id="@speaker.Id" class="btn btn-link btn-sm">@speaker.FirstName @speaker.LastName</a>
-                        if (i != session.Speakers.Count - 1) { <span>|</span> }
-                    }
-                </p>
-
-                <a asp-controller="Sessions" asp-action="Details" asp-route-id="@session.Id" class="btn btn-secondary">More Details</a>
-            </div>
-        }
+    <div class="alert alert-info" role="alert">
+        <h4 class="alert-heading">Sorry :(</h4>
+        <p class="mb-0">No sessions here, come back later!</p>
     </div>
+}
+else
+{
+    @foreach (var grp in Model)
+    {
+        <div class="card mb-4">
+            <div class="card-header">
+                @grp.Date.ToString("dddd, MMMM dd, yyyy") <strong>@grp.Date.ToString("hh tt")</strong>
+            </div>
+
+            @foreach (var session in grp.Sessions.OrderBy(g => g.Time))
+            {
+                <div class="card-body">
+                    <h5 class="card-title">@session.Title <br /><small>@session.Time.ToString("MMM dd, hh:mm tt") - @session.Time.Add(session.Duration).ToString("hh:mm tt")</small></h5>
+                    <p class="card-text">@session.Description</p>
+
+                    <h6>Speakers</h6>
+                    <p class="card-text">
+                        @for (var i = 0; i < session.Speakers.Count; i++)
+                        {
+                            var speaker = session.Speakers[i];
+                            <a asp-controller="Speakers" asp-action="Details" asp-route-id="@speaker.Id" class="btn btn-link btn-sm">@speaker.FirstName @speaker.LastName</a>
+                            if (i != session.Speakers.Count - 1)
+                            { <span>|</span>}
+                        }
+                    </p>
+
+                    <a asp-controller="Sessions" asp-action="Details" asp-route-id="@session.Id" class="btn btn-secondary">More Details</a>
+                </div>
+            }
+
+        </div>
+        <br />
+    }
+
+    <div id="extra-sections"></div>
+
+    <button type="button" class="btn btn-secondary btn-lg mb-4" id="load-more" data-page="1" style="min-width: 130px">Load More</button>
+}
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            var take = 4;
+            var loadMore$ = $('#load-more');
+            var extraSections$ = $('#extra-sections');
+            loadMore$.click(function (evt) {
+                loadMore$.text('Loading...');
+                var page = +loadMore$.data('page');
+                $.ajax({
+                    url: 'http://localhost:19081/ConferenceTracker/ConferenceTracker.Api/api/Sessions/Groups?take=4&skip=' + (page * take),
+                    type: 'GET',
+                    success: function (data) {
+                        loadMore$.text('Load More');
+
+                        if (!data.length) {
+                            loadMore$.slideUp(300);
+                            return;
+                        }
+
+                        loadMore$.data('page', page + 1);
+
+                        var html = '';
+                        for (var i = 0; i < data.length; i++) {
+                            var curr = data[i];
+                            var date = moment(curr.date);
+
+                            html += '<div class="card mb-4">';
+                                html += '<div class="card-header">';
+                                    html += date.format('dddd, MMMM dd, YYYY') + ' <strong>' + date.format("hh A") + '</strong>';
+                                html += '</div>';
+
+                            for (var j = 0; j < curr.sessions.length; j++) {
+                                var session = curr.sessions[j];
+                                var sessionTime = moment(session.time);
+                                html += '<div class="card-body">';
+                                    html += '<h5 class="card-title">' + session.title + '<br /><small>' + sessionTime.format("MMM dd, hh:mm A") + ' - ' + sessionTime.add(session.duration.minutes, 'min').format("hh:mm A") + '</small></h5>';
+                                    html += '<p class="card-text">' + session.description + '</p>';
+                                    html += '<h6>Speakers</h6>';
+
+                                    html += '<p class="card-text">';
+                                for (var k = 0; k < session.speakers.length; k++) {
+                                    var speaker = session.speakers[k];
+                                        html += '<a href="/Speakers/Details/' + speaker.id + '" class="btn btn-link btn-sm">' + speaker.firstName + ' ' + speaker.lastName + '</a>';
+                                    if (k !== session.speakers.length - 1)
+                                        html += '<span>|</span>';
+                                }
+                                    html += '</p>';
+
+                                    html += '<a href="/Sessions/Details/' + session.id + '" class="btn btn-secondary">More Details</a>';
+
+                                html += '</div>';
+
+                            }
+
+                            html += '</div>';
+                            html += ' <br />';
+                        }
+
+                        extraSections$.append(html);
+                    }
+                });
+            });
+        });
+    </script>
 }

@@ -1,4 +1,5 @@
 ﻿using ConferenceTracker.Model;
+using ConferenceTracker.Model.Dtos;
 using Microsoft.ServiceFabric.Services.Remoting;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,8 @@ namespace ConferenceTracker.Data.Interfaces
 {
     public interface ISessionDataService : IService
     {
+        Task<List<SessionGroupDto>> GetGrouped(int skip, int take);
+
         Task<List<Session>> GetAll(int skip, int take);
 
         Task<Session> Get(Guid id);

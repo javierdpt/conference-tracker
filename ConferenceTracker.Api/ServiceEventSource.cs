@@ -38,7 +38,7 @@ namespace ConferenceTracker.Api
         #region Events
         // Define an instance method for each event you want to record and apply an [Event] attribute to it.
         // The method name is the name of the event.
-        // Pass any parameters you want to record with the event (only primitive integer types, DateTime, Guid & string are allowed).
+        // Pass any parameters you want to record with the event (only primitive integer types, Date, Guid & string are allowed).
         // Each event method implementation should check whether the event source is enabled, and if it is, call WriteEvent() method to raise the event.
         // The number and types of arguments passed to every event method must exactly match what is passed to WriteEvent().
         // Put [NonEvent] attribute on all methods that do not define an event.

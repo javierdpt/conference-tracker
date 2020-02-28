@@ -1,5 +1,4 @@
-﻿using System;
-using ConferenceTracker.Data.Interfaces;
+﻿using ConferenceTracker.Data.Interfaces;
 using ConferenceTracker.Data.Proxy.Services;
 using ConferenceTracker.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -20,13 +19,8 @@ namespace ConferenceTracker.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var sessions = await _sessionDataService.GetAll(0, -1);
-            var groups = from s in sessions
-                group s by new DateTime(s.Time.Year, s.Time.Month, s.Time.Day, s.Time.Hour, 0, 0)
-                into grp
-                orderby grp.Key
-                select grp;
-            return View(groups);
+            var sessions = await _sessionDataService.GetGrouped(0, 4);
+            return View(sessions.OrderBy(s => s.Date));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
