@@ -1,22 +1,32 @@
-﻿using ConferenceTracker.Web.Models;
+﻿using System;
+using ConferenceTracker.Data.Interfaces;
+using ConferenceTracker.Data.Proxy.Services;
+using ConferenceTracker.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ConferenceTracker.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ISessionDataService _sessionDataService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProxyService proxyService)
         {
-            _logger = logger;
+            _sessionDataService = proxyService.SessionDataService();
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var sessions = await _sessionDataService.GetAll(0, -1);
+            var groups = from s in sessions
+                group s by new DateTime(s.Time.Year, s.Time.Month, s.Time.Day, s.Time.Hour, 0, 0)
+                into grp
+                orderby grp.Key
+                select grp;
+            return View(groups);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

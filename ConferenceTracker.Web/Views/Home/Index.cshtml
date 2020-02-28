@@ -1,8 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<IGrouping<DateTime, ConferenceTracker.Model.Session>>
+@{
+    ViewData["Title"] = "Sessions";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1 class="display-4 mt-5 mb-4">Sessions</h1>
+
+@foreach (var grp in Model)
+{
+    <div class="card mb-4">
+        <div class="card-header">
+            @grp.Key.ToString("dddd, MMMM dd, yyyy") <strong>@grp.Key.ToString("hh tt")</strong>
+        </div>
+
+        @foreach (var session in grp.OrderBy(g => g.Time))
+        {
+            <div class="card-body">
+                <h5 class="card-title">@session.Title <br /><small>@session.Time.ToString("MMM dd, hh:mm tt") - @session.Time.Add(session.Duration).ToString("hh:mm tt")</small></h5>
+                <p class="card-text">@session.Description</p>
+
+                <h6>Speakers</h6>
+                <p class="card-text">
+                    @for (var i = 0; i < session.Speakers.Count; i++)
+                    {
+                        var speaker = session.Speakers[i];
+                        <a asp-controller="Speakers" asp-action="Details" asp-route-id="@speaker.Id" class="btn btn-link btn-sm">@speaker.FirstName @speaker.LastName</a>
+                        if (i != session.Speakers.Count - 1) { <span>|</span> }
+                    }
+                </p>
+
+                <a asp-controller="Sessions" asp-action="Details" asp-route-id="@session.Id" class="btn btn-secondary">More Details</a>
+            </div>
+        }
+    </div>
+}
