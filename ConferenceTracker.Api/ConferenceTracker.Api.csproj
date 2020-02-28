@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ConferenceTracker.Data.Interfaces\ConferenceTracker.Data.Interfaces.csproj" />
+    <ProjectReference Include="..\ConferenceTracker.Data.Proxy\ConferenceTracker.Data.Proxy.csproj" />
   </ItemGroup>
 
 

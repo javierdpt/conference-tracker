@@ -1,21 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Fabric;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.ServiceFabric.Services.Communication.AspNetCore;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
-using Microsoft.ServiceFabric.Data;
+using System.Collections.Generic;
+using System.Fabric;
+using System.IO;
 
 namespace ConferenceTracker.Web
 {
     /// <summary>
-    /// The FabricRuntime creates an instance of this class for each service type instance. 
+    /// The FabricRuntime creates an instance of this class for each service type instance.
     /// </summary>
     internal sealed class Web : StatelessService
     {
@@ -41,6 +37,11 @@ namespace ConferenceTracker.Web
                                     .ConfigureServices(
                                         services => services
                                             .AddSingleton<StatelessServiceContext>(serviceContext))
+                                    .ConfigureAppConfiguration((hostingContext, config) =>
+                                    {
+                                        config.AddJsonFile("appsettings.json");
+                                        config.AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json");
+                                    })
                                     .UseContentRoot(Directory.GetCurrentDirectory())
                                     .UseStartup<Startup>()
                                     .UseServiceFabricIntegration(listener, ServiceFabricIntegrationOptions.None)

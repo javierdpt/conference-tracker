@@ -1,3 +1,5 @@
+using ConferenceTracker.Data.Proxy.Options;
+using ConferenceTracker.Data.Proxy.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -17,7 +19,13 @@ namespace ConferenceTracker.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions();
+
+            services.Configure<ConferenceDataOptions>(Configuration.GetSection("Remoting:DataService"));
+
             services.AddControllersWithViews();
+
+            services.AddScoped<IProxyService, ProxyService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

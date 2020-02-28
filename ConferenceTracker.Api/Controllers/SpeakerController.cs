@@ -1,9 +1,7 @@
 ﻿using ConferenceTracker.Data.Interfaces;
+using ConferenceTracker.Data.Proxy.Services;
 using ConferenceTracker.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.ServiceFabric.Services.Client;
-using Microsoft.ServiceFabric.Services.Communication.Client;
-using Microsoft.ServiceFabric.Services.Remoting.Client;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,14 +14,9 @@ namespace ConferenceTracker.Api.Controllers
     {
         private readonly ISpeakerDataService _speakerDataService;
 
-        public SpeakerController()
+        public SpeakerController(IProxyService proxyService)
         {
-            _speakerDataService = ServiceProxy.Create<ISpeakerDataService>(
-                new Uri("fabric:/ConferenceTracker/ConferenceTracker.Data"),
-                new ServicePartitionKey(0),
-                TargetReplicaSelector.Default,
-                "SpeakerDataEndpoint"
-            );
+            _speakerDataService = proxyService.SpeakerDataService();
         }
 
         // GET: api/Speakers

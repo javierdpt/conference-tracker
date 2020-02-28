@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceTracker.Data.Inte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceTracker.Web", "ConferenceTracker.Web\ConferenceTracker.Web.csproj", "{B762C508-5271-4E86-BF09-D27BB0B30E8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceTracker.Data.Proxy", "ConferenceTracker.Data.Proxy\ConferenceTracker.Data.Proxy.csproj", "{FC77D83D-033F-4ED3-9FE5-40AD82133050}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,14 @@ Global
 		{B762C508-5271-4E86-BF09-D27BB0B30E8E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B762C508-5271-4E86-BF09-D27BB0B30E8E}.Release|x64.ActiveCfg = Release|Any CPU
 		{B762C508-5271-4E86-BF09-D27BB0B30E8E}.Release|x64.Build.0 = Release|Any CPU
+		{FC77D83D-033F-4ED3-9FE5-40AD82133050}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC77D83D-033F-4ED3-9FE5-40AD82133050}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC77D83D-033F-4ED3-9FE5-40AD82133050}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FC77D83D-033F-4ED3-9FE5-40AD82133050}.Debug|x64.Build.0 = Debug|Any CPU
+		{FC77D83D-033F-4ED3-9FE5-40AD82133050}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC77D83D-033F-4ED3-9FE5-40AD82133050}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC77D83D-033F-4ED3-9FE5-40AD82133050}.Release|x64.ActiveCfg = Release|Any CPU
+		{FC77D83D-033F-4ED3-9FE5-40AD82133050}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
