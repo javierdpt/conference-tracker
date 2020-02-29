@@ -46,7 +46,7 @@ namespace ConferenceTracker.Web.Controllers
             {
                 _logger.LogError(e, e.Message);
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Details), new { id });
         }
 
         // GET: Sessions/Details/5

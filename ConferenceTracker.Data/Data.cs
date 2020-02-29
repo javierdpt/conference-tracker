@@ -1,4 +1,5 @@
 using ConferenceTracker.Data.Services;
+using ConferenceTracker.Model;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Remoting;
 using Microsoft.ServiceFabric.Services.Remoting.FabricTransport.Runtime;
@@ -9,7 +10,6 @@ using System.Collections.Generic;
 using System.Fabric;
 using System.Threading;
 using System.Threading.Tasks;
-using ConferenceTracker.Model;
 
 namespace ConferenceTracker.Data
 {
@@ -95,7 +95,7 @@ namespace ConferenceTracker.Data
                         LastName = "Perez",
                         Company = "Assurant",
                         Email = "test@gmail.com",
-                        PhoneNumber = "5555555555"
+                        PhoneNumber = "7865324142"
                     },
                     new Attendee
                     {
@@ -104,7 +104,7 @@ namespace ConferenceTracker.Data
                         LastName = "Tartak",
                         Company = "Assurant",
                         Email = "test@gmail.com",
-                        PhoneNumber = "5555555555"
+                        PhoneNumber = "3056322230"
                     },
                     new Attendee
                     {
@@ -113,7 +113,7 @@ namespace ConferenceTracker.Data
                         LastName = "Urbino",
                         Company = "Assurant",
                         Email = "test@gmail.com",
-                        PhoneNumber = "5555555555"
+                        PhoneNumber = "7864889551"
                     }
                 },
                 Location = "PaaS/Serverless Computing - Room 2066",
