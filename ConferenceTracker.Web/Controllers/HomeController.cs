@@ -1,10 +1,10 @@
 ﻿using ConferenceTracker.Data.Interfaces;
-using ConferenceTracker.Data.Proxy.Services;
 using ConferenceTracker.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using ConferenceTracker.Proxy.Services;
 
 namespace ConferenceTracker.Web.Controllers
 {

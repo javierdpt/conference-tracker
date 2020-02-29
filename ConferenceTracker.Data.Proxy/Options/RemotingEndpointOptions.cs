@@ -1,4 +1,4 @@
-﻿namespace ConferenceTracker.Data.Proxy.Options
+﻿namespace ConferenceTracker.Proxy.Options
 {
     public abstract class RemotingEndpointOptions
     {

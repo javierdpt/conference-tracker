@@ -1,12 +1,12 @@
-﻿using ConferenceTracker.Communications.Interfaces;
+﻿using System;
+using ConferenceTracker.Communications.Interfaces;
 using ConferenceTracker.Data.Interfaces;
-using ConferenceTracker.Data.Proxy.Options;
+using ConferenceTracker.Proxy.Options;
 using Microsoft.Extensions.Options;
 using Microsoft.ServiceFabric.Services.Client;
 using Microsoft.ServiceFabric.Services.Remoting.Client;
-using System;
 
-namespace ConferenceTracker.Data.Proxy.Services
+namespace ConferenceTracker.Proxy.Services
 {
     public class ProxyService : IProxyService
     {

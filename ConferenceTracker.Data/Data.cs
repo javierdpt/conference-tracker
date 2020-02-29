@@ -94,8 +94,8 @@ namespace ConferenceTracker.Data
                         FirstName = "Javier",
                         LastName = "Perez",
                         Company = "Assurant",
-                        Email = "test@gmail.com",
-                        PhoneNumber = "7865324142"
+                        Email = "javier@mail.com",
+                        PhoneNumber = "5555555555"
                     },
                     new Attendee
                     {
@@ -103,8 +103,8 @@ namespace ConferenceTracker.Data
                         FirstName = "Will",
                         LastName = "Tartak",
                         Company = "Assurant",
-                        Email = "test@gmail.com",
-                        PhoneNumber = "3056322230"
+                        Email = "will@mail.com",
+                        PhoneNumber = "5555555555"
                     },
                     new Attendee
                     {
@@ -112,8 +112,8 @@ namespace ConferenceTracker.Data
                         FirstName = "Ernesto",
                         LastName = "Urbino",
                         Company = "Assurant",
-                        Email = "test@gmail.com",
-                        PhoneNumber = "7864889551"
+                        Email = "ernesto@mail.com",
+                        PhoneNumber = "5555555555"
                     }
                 },
                 Location = "PaaS/Serverless Computing - Room 2066",

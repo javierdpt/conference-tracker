@@ -1,12 +1,12 @@
 ﻿using ConferenceTracker.Communications.Interfaces;
 using ConferenceTracker.Data.Interfaces;
-using ConferenceTracker.Data.Proxy.Services;
 using ConferenceTracker.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ConferenceTracker.Proxy.Services;
 
 namespace ConferenceTracker.Web.Controllers
 {

@@ -1,7 +1,7 @@
 ﻿using ConferenceTracker.Communications.Interfaces;
 using ConferenceTracker.Data.Interfaces;
 
-namespace ConferenceTracker.Data.Proxy.Services
+namespace ConferenceTracker.Proxy.Services
 {
     public interface IProxyService
     {

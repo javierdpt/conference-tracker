@@ -1,5 +1,5 @@
-using ConferenceTracker.Data.Proxy.Options;
-using ConferenceTracker.Data.Proxy.Services;
+using ConferenceTracker.Proxy.Options;
+using ConferenceTracker.Proxy.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;

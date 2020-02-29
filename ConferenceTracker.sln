@@ -15,13 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceTracker.Data.Inte
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceTracker.Web", "ConferenceTracker.Web\ConferenceTracker.Web.csproj", "{B762C508-5271-4E86-BF09-D27BB0B30E8E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceTracker.Data.Proxy", "ConferenceTracker.Data.Proxy\ConferenceTracker.Data.Proxy.csproj", "{FC77D83D-033F-4ED3-9FE5-40AD82133050}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceTracker.Proxy", "ConferenceTracker.Data.Proxy\ConferenceTracker.Proxy.csproj", "{FC77D83D-033F-4ED3-9FE5-40AD82133050}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceTracker.Communications", "ConferenceTracker.Communications\ConferenceTracker.Communications.csproj", "{091DCCA7-7D6C-41BC-A6CA-0902007AECFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceTracker.Communications", "ConferenceTracker.Communications\ConferenceTracker.Communications.csproj", "{091DCCA7-7D6C-41BC-A6CA-0902007AECFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceTracker.Communications.Interfaces", "ConferenceTracker.Communications.Interfaces\ConferenceTracker.Communications.Interfaces.csproj", "{F830CEAD-06EA-4A30-A8E3-7CE01AEEA479}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceTracker.Communications.Interfaces", "ConferenceTracker.Communications.Interfaces\ConferenceTracker.Communications.Interfaces.csproj", "{F830CEAD-06EA-4A30-A8E3-7CE01AEEA479}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceTracker.Communications.Tests", "ConferenceTracker.Communications.Tests\ConferenceTracker.Communications.Tests.csproj", "{F01BFEBE-2F98-4AA9-95EB-BDB86FF30B47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceTracker.Communications.Tests", "ConferenceTracker.Communications.Tests\ConferenceTracker.Communications.Tests.csproj", "{F01BFEBE-2F98-4AA9-95EB-BDB86FF30B47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
