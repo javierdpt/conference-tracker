@@ -38,7 +38,7 @@
     <ProjectReference Include="..\ConferenceTracker.Communications\ConferenceTracker.Communications.csproj" />
     <ProjectReference Include="..\ConferenceTracker.Data\ConferenceTracker.Data.csproj" />
     <ProjectReference Include="..\ConferenceTracker.Web\ConferenceTracker.Web.csproj">
-      <!--<ServiceLaunchUrl>http://{MachineName}:{ServicePort}/</ServiceLaunchUrl>-->
+      <ServiceLaunchUrl>http://localhost:{ServicePort}/</ServiceLaunchUrl>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
