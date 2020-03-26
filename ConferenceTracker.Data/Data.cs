@@ -95,7 +95,7 @@ namespace ConferenceTracker.Data
                         LastName = "Perez",
                         Company = "Assurant",
                         Email = "javier@mail.com",
-                        PhoneNumber = "5555555555"
+                        PhoneNumber = "7865324142"
                     },
                     new Attendee
                     {
@@ -104,7 +104,7 @@ namespace ConferenceTracker.Data
                         LastName = "Tartak",
                         Company = "Assurant",
                         Email = "will@mail.com",
-                        PhoneNumber = "5555555555"
+                        PhoneNumber = "3056322230"
                     },
                     new Attendee
                     {
